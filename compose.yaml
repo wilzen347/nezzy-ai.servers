@@ -1,28 +1,28 @@
 services:
-    # filesystem-mcp:
-    #     build:
-    #         context: .
-    #         dockerfile: src/filesystem/Dockerfile
-    #     pull_policy: build
-    #     volumes:
-    #         - "C:/Users/Devat/knowledge-base/class/past-semesters/2025SS:/projects/knowledge-base/class/past-semesters/2025SS"
-    #     command: ["/projects"]
-    #     stdin_open: true
-    #     tty: true
-    #     restart: unless-stopped
-    #     networks:
-    #         - mcp-network
-    time:
+    filesystem:
+        container_name: filesystem-mcp
         build:
-            context: src/time
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: src/filesystem/Dockerfile
         pull_policy: build
-        container_name: time-mcp
-        networks:
-            - mcp-network
+        volumes:
+            - "C:/Users/Devat/knowledge-base/class:/class"
         restart: unless-stopped
         stdin_open: true
         tty: true
+        networks:
+            - mcp-network
+    # time:
+    #     container_name: time-mcp
+    #     build:
+    #         context: src/time
+    #         dockerfile: Dockerfile
+    #     pull_policy: build
+    #     restart: unless-stopped
+    #     stdin_open: true
+    #     tty: true
+    #     networks:
+    #         - mcp-network
 
 networks:
     default:
